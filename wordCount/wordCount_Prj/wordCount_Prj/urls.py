@@ -23,4 +23,5 @@ urlpatterns = [
     path('', views.index, name="index"), # 최상단 경로에 유저가 접속하면 views.py에 있는 index 함수 실행
     path('wordCount/', views.wordCount, name="wordCount"),
     path('result/', views.result, name="result"),
+    path('hello/', views.hello, name="hello"),
 ]
