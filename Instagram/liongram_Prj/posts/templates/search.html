@@ -1,0 +1,9 @@
+<h1>"{{data}}" - 검색 결과</h1>
+
+{% for target in targets %}
+    <h2>{{target.title}}</h2>
+    <p>{{target.content}}</p>
+
+{% empty %}
+검색된 글이 없습니다.
+{% endfor %}

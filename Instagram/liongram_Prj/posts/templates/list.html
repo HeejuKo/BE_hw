@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>덕멋 인스타그램</h1>
+
+    <form action="{% url 'search' %}">
+        <input type="text" name="data">
+        <input type="submit" value="검색">
+    </form>
+
+    {% for post in posts %}
+        <h2>{{post.title}}</h2>
+        <p>{{post.content}}</p>
+        <p>조회수: {{post.views}}</p>
+        <p>작성일: {{post.created_at}}</p>
+        <hr>
+
+    {% empty %}
+        글이 존재하지 않습니다.
+    {% endfor %}
+
+</body>
+</html>
