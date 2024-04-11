@@ -7,10 +7,10 @@
   </head>
   <body>
 
-    <form action="{% url 'search' %}">
+    <form action="{% url 'contacts:search' %}">
         <input type="text" name="search">
         <input type="submit" value="검색">
-      </form>
+    </form>
 
     {% for contact in contacts %}
         <h2>이름: {{contact.name}}</h2>
