@@ -6,6 +6,10 @@
     <title>Document</title>
 </head>
 <body>
+    <!--글 작성 버튼-->
+    <a href="{% url 'create' %}">글 작성하기</a>
+    <hr>
+    
     <h1>덕멋 인스타그램</h1>
 
     <form action="{% url 'search' %}">
@@ -14,7 +18,7 @@
     </form>
 
     {% for post in posts %}
-        <h2>{{post.title}}</h2>
+        <h2><a href="{% url 'detail' post.id %}">{{ post.title }}</a></h2> <!--해당 게시글의 상세 페이지로 이동하는 링크 (id도 함께 전달)-->
         <p>{{post.content}}</p>
         <p>조회수: {{post.views}}</p>
         <p>작성일: {{post.created_at}}</p>
