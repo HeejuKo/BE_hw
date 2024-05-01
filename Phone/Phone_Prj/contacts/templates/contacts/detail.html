@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+  </head>
+  <body>
+    <h2>연락처 상세 조회</h2>
+    <p>이름: {{ contact.name }}</p>
+    <p>번호: {{ contact.phone_num }}</p>
+    <p>이메일: {{ contact.email }}</p>
+    <p>생성 날짜: {{ contact.created_at }}</p>
+    <br>
+    <a href="{% url 'contacts:list' %}">연락처 목록으로 돌아가기</a>
+  </body>
+</html>

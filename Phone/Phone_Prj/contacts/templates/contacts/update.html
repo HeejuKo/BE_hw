@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+  </head>
+  <body>
+    <h2>연락처 수정</h2>
+    <form method="POST" action="{%  url 'contacts:update' contact.id %}">
+        {% csrf_token %}
+        이름:<br>
+        <input type="text" value="{{contact.name}}" name="name"><br><br>
+        번호:<br>
+        <input type="text" value="{{contact.phone_num}}" name="phone_num"><br><br>
+        이메일:<br>
+        <input type="text" value="{{contact.email}}" name="email"><br><br>
+        <input type="submit" value="수정하기">
+    </form>
+  </body>
+</html>
