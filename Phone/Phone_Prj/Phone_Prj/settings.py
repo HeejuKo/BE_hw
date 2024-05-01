@@ -104,9 +104,11 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
 
-LANGUAGE_CODE = "ko-kor"
+#LANGUAGE_CODE = "ko-kor"
+LANGUAGE_CODE = "en"
 
-TIME_ZONE = "Asia/Seoul"
+#TIME_ZONE = "Asia/Seoul"
+TIME_ZONE = "UTC"
 
 USE_I18N = True
 
