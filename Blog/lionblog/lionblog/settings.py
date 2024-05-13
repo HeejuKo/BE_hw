@@ -38,6 +38,8 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "blog",
+    "users",
+    "accounts",
 ]
 
 MIDDLEWARE = [
@@ -122,3 +124,5 @@ STATIC_URL = "static/"
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+AUTH_USER_MODEL = 'users.user' # 기본 User 모델 대신 users 앱의 모델을 사용자 인증 모델로 사용

@@ -20,4 +20,5 @@ from django.urls import path, include
 urlpatterns = [
     path("admin/", admin.site.urls),
     path('', include('blog.urls')),
+    path("accounts/", include('accounts.urls')), # accounts 앱 하위의 모든 url 경로는 127.0.0.1:8000/accounts/~로 시작함
 ]

@@ -7,7 +7,7 @@
   </head>
   <body>
     <h2>글 작성</h2>
-    <form method="POST" action="{%  url 'create' %}"> <!--POST 방식으로 서버에 전송, create url 실행-->
+    <form method="POST" action="{%  url 'blog:create' %}"> <!--POST 방식으로 서버에 전송, create url 실행-->
         {% csrf_token %} <!--해킹으로부터 보호하는 django 자체 기능-->
         제목 - <input type="text" name="title"><br><br>
         내용 - <textarea name="content"></textarea><br><br>
