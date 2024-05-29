@@ -20,7 +20,18 @@
     <!--글 작성 버튼-->
     <a href="{% url 'blog:create' %}">글 작성하기</a>
     <hr>
-    
+
+    <!--카테고리를 필터링 할 수 있는 form-->
+    <form method="GET" action="{% url 'blog:list' %}">
+      <select name="category">
+        <option value="">모든 카테고리</option>
+        {% for category in categories %}
+          <option value="{{ category.id }}">{{ category.name }}</option>
+        {% endfor %}
+      </select>
+      <input type="submit" value="조회">
+    </form>
+
     {% for post in posts %}
       <h2><a href="{% url 'blog:detail' post.id %}">{{ post.title }}</a></h2> <!--해당 게시글의 상세 페이지로 이동하는 링크 (id도 함께 전달)-->
       <p>{{ post.content }}</p>
