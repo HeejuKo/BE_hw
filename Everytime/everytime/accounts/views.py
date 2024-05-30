@@ -38,4 +38,4 @@ def user_info(request):
 
 def mypost(request): # 역참조
     posts = request.user.posts.all().order_by('-id')
-    return render(request, 'accounts/mypost.html', {'posts' : posts})
+    return render(request, 'accounts/my-post.html', {'posts' : posts})

@@ -11,6 +11,8 @@
       nickname : {{ request.user.nickname }}<hr>
       <a href="{% url 'accounts:mypage' %}">마이페이지</a>
       <a href="{% url 'accounts:logout' %}">로그아웃</a><hr>
+      <a href="{% url 'accounts:my-post' %}">내가 작성한 글</a>
+<hr>
     {% else %}
       <a href="{% url 'accounts:signup' %}">회원가입</a>
       <a href="{% url 'accounts:login' %}">로그인</a>
@@ -23,11 +25,13 @@
         {% csrf_token %} <!--해킹으로부터 보호하는 django 자체 기능-->
         <input type="text" name="title"><br>
         <textarea name="content"></textarea>
-        <input type="checkbox">익명</input><br>
+        <input type="checkbox" name="check">익명</input><br>
         <input type="submit" value="작성 완료"> <!--버튼 클릭 -> views.py의 create 함수에 POST 방식으로 데이터 제출됨-->
     </form>
     <br>
     <hr>
+
+    <!--글 리스트-->
     {% for post in posts %}
       <h2><a href="{% url 'post:detail' post.id %}">{{ post.title }}</a></h2> <!--해당 게시글의 상세 페이지로 이동하는 링크 (id도 함께 전달)-->
       <p>{{ post.content }}</p>

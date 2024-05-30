@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+  </head>
+  <body>
+    {% for post in request.user.posts.all %}
+    <h2><a href="{% url 'post:detail' post.id %}"></a>{{ post.title }}</h2>
+    <p>{{ post.content }}</p>
+    <p>작성일 - {{ post.created_at }}</p>
+    <p>작성자 - {{ post.author.nickname }}</p>
+    {% empty %}
+    글이 없습니다.
+    {% endfor %}
+</body>
+</html>
