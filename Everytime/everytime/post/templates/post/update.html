@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+  </head>
+  <body>
+    <form method="POST" action="{%  url 'post:list' %}"> <!--POST 방식으로 서버에 전송, create url 실행-->
+        {% csrf_token %}
+        <input type="text" value="{{ post.title }}" name="title"><hr><br>
+        <textarea name="content">{{ post.content }}</textarea><br><br>
+        <input type="submit" value="작성 완료">
+    </form>
+  </body>
+</html>

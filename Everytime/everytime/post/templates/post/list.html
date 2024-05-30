@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+  </head>
+  <body>
+    <!--로그인 & 회원가입-->
+    {% if request.user.is_authenticated %} <!-- 사용자가 현재 로그인되어 있는 상태인지 검증 -->
+      nickname : {{ request.user.nickname }}<hr>
+      <a href="{% url 'accounts:mypage' %}">마이페이지</a>
+      <a href="{% url 'accounts:logout' %}">로그아웃</a><hr>
+    {% else %}
+      <a href="{% url 'accounts:signup' %}">회원가입</a>
+      <a href="{% url 'accounts:login' %}">로그인</a>
+    {% endif %}
+    <br>
+    <br>
+
+    <!--글 작성-->
+    <form method="POST" action="{%  url 'post:list' %}"> <!--POST 방식으로 서버에 전송-->
+        {% csrf_token %} <!--해킹으로부터 보호하는 django 자체 기능-->
+        <input type="text" name="title"><br>
+        <textarea name="content"></textarea>
+        <input type="checkbox">익명</input><br>
+        <input type="submit" value="작성 완료"> <!--버튼 클릭 -> views.py의 create 함수에 POST 방식으로 데이터 제출됨-->
+    </form>
+    <br>
+    <hr>
+    {% for post in posts %}
+      <h2><a href="{% url 'post:detail' post.id %}">{{ post.title }}</a></h2> <!--해당 게시글의 상세 페이지로 이동하는 링크 (id도 함께 전달)-->
+      <p>{{ post.content }}</p>
+      <p>작성일 - {{ post.created_at }}</p>
+
+    {% empty %}
+        <h2>글이 없습니다.</h2>
+    {% endfor %}
+  </body>
+</html>
