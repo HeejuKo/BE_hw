@@ -30,6 +30,8 @@ def create(request):
     if request.method == "POST":        # 요청된 method가 POST라면
         title = request.POST.get('title') # title을 가져와서 title 변수에 넣고
         content = request.POST.get('content')
+        video = request.FILES.get('video')
+        image = request.FILES.get('image')
 
         category_ids = request.POST.getlist('category') # 선택한 category의 id 리스트 가져옴
         category_list = [get_object_or_404(Category, id = category_id) for category_id in category_ids] # Category 객체로 변환
@@ -38,6 +40,8 @@ def create(request):
             title = title,      # 속성 = 받아온 값
             content = content,
             author = request.user,
+            image = image,
+            video = video
         )
 
         # 다대다 카테고리 연결 (add를 통해)
@@ -57,6 +61,17 @@ def update(request, id):
     if request.method == "POST":
         post.title = request.POST.get('title') # 사용자가 제출한 update.html의 폼에서 title, content 추출
         post.content = request.POST.get('content')
+        video = request.FILES.get('video')
+        image = request.FILES.get('image')
+
+        # 새로운 파일을 업로드했다면, 이전 파일 삭제 후 새로운 파일로 업데이트
+        if video:
+            post.video.delete()
+            post.video = video
+        if image:
+            post.image.delete()
+            post.image = image
+
         post.save() # post 데이터의 변경 사항(제목, 내용)을 데이터베이스에 저장
         return redirect('blog:detail', id) # 수정이 완료되면, 사용자를 게시글의 상세(detail) 페이지로 이동시킴
     return render(request, 'blog/update.html', {'post': post})

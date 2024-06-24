@@ -16,9 +16,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+# 미디어 파일 및 정적 경로 연결
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path("admin/", admin.site.urls),
     path('', include('blog.urls')),
     path("accounts/", include('accounts.urls')), # accounts 앱 하위의 모든 url 경로는 127.0.0.1:8000/accounts/~로 시작함
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) # 미디어 파일에 대한 URL 제공
